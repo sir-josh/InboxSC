@@ -26,4 +26,10 @@ describe('Inbox Class', () => {
         const message = await deployedContract.methods.message().call();
         assert.equal(message, 'Hello there!'); 
     });
+
+    it('can change the message property', async () => {
+        await deployedContract.methods.setMessage('Hi, how are you?').send({ from: fetchedAccounts[0] });
+        const message = await deployedContract.methods.message().call();
+        assert.equal(message, 'Hi, how are you?'); 
+    });
 });
