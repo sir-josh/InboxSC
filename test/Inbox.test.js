@@ -19,6 +19,11 @@ beforeEach(async () => {
 
 describe('Inbox Class', () => {
     it('deploys a contract', ()=>{
-        console.log(deployedContract);
+        assert.ok(deployedContract.options.address);
+    });
+
+    it('it has a default message', async () => {
+        const message = await deployedContract.methods.message().call();
+        assert.equal(message, 'Hello there!'); 
     });
 });
